@@ -23,9 +23,5 @@ class Library:
         books = list(set(books)-set(scanned_books))
         for book in books:
             puctuation = puntuation + book.punctuation
-        return punctuation
 
-def main():
-    pass
-if __name__ == "__main__":
-    main()
+        return punctuation
