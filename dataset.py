@@ -27,3 +27,31 @@ class Dataset:
       for book in re.split(r'\s', raw_values.pop(0)):
         books.append(self.books[int(book)])
       self.libraries.append(Library(library,books,total_books,parallel,time))
+
+  def solve(self):
+    days_left = self.total_days
+    libraries = self.libraries
+    books_alredy_scanned = []
+    points = 0
+    number_of_libraries = 0
+    best_libraries = []
+    while days_left > 0:
+      best_library = None
+      best_punct = 0
+      for library in self.libraries:
+        punct = library.get_punctuation2(days_left, books_alredy_scanned)
+        if punct > best_punct:
+          best_library = library
+          best_punct = punct
+      days_left -= best_library.signup_time
+      books_alredy_scanned += best_library.books
+      libraries.pop(libraries.index(best_library))
+      points += best_punct
+      number_of_libraries += 1
+      #print(days_left, best_library.id, points)
+
+    print(number_of_libraries)
+    for library in best_libraries:
+      print(str(library.id) + " " + str(len(library.good_books)))
+      for book in library.good_books:
+        print(book.id, end=" ")

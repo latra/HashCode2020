@@ -10,17 +10,18 @@ def main():
         "https://hashcodejudge.withgoogle.com/download/blob/AMIfv97dgUsRkZX-sPN6ZjxVuupAVdZtpeLNfh2m1Y1brcUXLNq4SuwjqPA8Adl4FcNRewazJSiXfhQxjlgUNOnxlSF9hJxJdBzl2LIthcs2VBrD41rNUtd077k277McQLMFgwx1qPjvwnynXnUAZqE3F8XiTq9uOpAWSuMW1h8nbJwNCDcrH3-0ZPxW-3AGbozbJw6jWpCYuF2Gsq5Ato2ijJtI_hq9_7Oj37ddoFsYXOJnLO0toEK-hP4c9ItPQWm4SvrI3X2NPckkP15ImXsUhFXohgj-ZaudpG7he0X4oqpWoLAzJ3M0UyfMKHF5P9O1bLU-yi-8"
         ]
 
-    d = Dataset(datasetURLs[2])
+    d = Dataset(datasetURLs[1])
 
-    scanned_books = []
-    total_points = 0
-    for library in d.libraries:
-        punctuation = library.get_punctuation2(d.total_days, scanned_books)
-        total_points += punctuation
-        scanned_books += library.books
+    #scanned_books = []
+    #total_points = 0
+    #for library in d.libraries:
+    #    punctuation = library.get_punctuation2(d.total_days, scanned_books)
+    #    total_points += punctuation
+    #    scanned_books += library.books
         #for book in library.good_books:
         #    print(library.id, book.book_id, book.punctuation)
-    print(total_points)
+    #print(total_points)
+    d.solve()
 
 if __name__ == "__main__":
     main()

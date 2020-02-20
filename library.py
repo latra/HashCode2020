@@ -38,8 +38,8 @@ class Library:
             if available_time == 0:
                 break
             actual_book = self.books[i]
-            print("WTF")
-            print(actual_book)
+            #print("WTF")
+            #print(actual_book)
             if actual_book in good_books:
                 punctuation += actual_book.punctuation
                 self.good_books.append(actual_book)
