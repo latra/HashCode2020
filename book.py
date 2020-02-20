@@ -13,3 +13,5 @@ class Book:
         return self.puntuacion <= other.puntuacion
     def __ge__(self, other):
         return self.puntuacion >= other.puntuacion
+    def __str__ (self):
+        return [self.book_id, self.puntuacion]
