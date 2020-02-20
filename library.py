@@ -22,7 +22,7 @@ class Library:
                 break
             position = i*self.books_in_parallel
             if position+self.books_in_parallel < len(self.books):
-                punctuation = punctuation + self.sum_punctuations(self.books[position], scanned_books)
+                punctuation = punctuation + self.sum_punctuations(self.books[position:position+self.books_in_parallel], scanned_books)
         return punctuation
 
     def sum_punctuations(self, books, scanned_books):
