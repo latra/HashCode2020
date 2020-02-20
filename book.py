@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 class Book:
     def __init__(self, book_id, punctuation):
-        self.book_id = book_id
-        self.punctuation = punctuation
+        self.book_id = int(book_id)
+        self.punctuation = int(punctuation)
     def __eq__(self, other):
         return self.punctuation == other.punctuation
     def __lt__(self, other):

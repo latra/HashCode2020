@@ -2,7 +2,7 @@
 from book import Book
 from library import Library
 
-book0 = Book(0, 1)
+book0 = Book("0", "1")
 book1 = Book(1, 2)
 book2 = Book(2, 3)
 book3 = Book(3, 6)
