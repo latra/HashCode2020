@@ -19,10 +19,9 @@ class Library:
     def get_punctuation(self, availible_time, scanned_books):
         punctuation = 0
         availible_time = availible_time-self.signup_time
-        for i in range(availible_time):
+        for i in range(min(availible_time, math.ceil(int(len(self.books)/self.books_in_parallel)))):
             position = i*self.books_in_parallel
             if position+self.books_in_parallel < len(self.books):
-                
                 punctuation = punctuation + \
                     self.sum_punctuations(self.books[position:position+self.books_in_parallel], scanned_books)
             else:
