@@ -13,3 +13,5 @@ class Book:
         return self.punctuation <= other.punctuation
     def __ge__(self, other):
         return self.punctuation >= other.punctuation
+    def __str__ (self):
+        return [self.book_id, self.punctuation]
