@@ -18,10 +18,11 @@ def testValues(actual, expected):
         print('KO: ' + str(actual) + '!=' + str(expected))
 
 def libraryTests():
-    print(library0.books)
-    print(library0.get_punctuation(1000,[]))
+    print("*** Class Library")
+    testValues(library0.get_punctuation(1000,[]), 16)
 
 def bookTests():
+    print("*** Class Book ***")
 
     testValues(book0 < book2, True)
     testValues(book0 > book2, False)
