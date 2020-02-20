@@ -23,8 +23,8 @@ class Solver:
                 if curr_sol.cost() < self.best_cost:
                     self.best_sol = curr_sol.copy()
                     self.best_cost = curr_sol.cost()
+                    self.best_sol.print()
                     if self.best_cost == 0:
-                        self.best_sol.print()
                         return self.best_sol
             self.best_sol.print()
         return self.best_sol

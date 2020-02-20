@@ -80,6 +80,7 @@ class Lib(Interpretation):
         c = Lib(self.libraries, self.deadline, self.best_score, self.books, self.max_neigh)
         c.inter = self.inter
         c.picked_libs = self.picked_libs
+        c.picked_books = self.picked_books
         return c
 
     def print(self) -> None:
@@ -138,12 +139,12 @@ def main():
         "https://hashcodejudge.withgoogle.com/download/blob/AMIfv97dgUsRkZX-sPN6ZjxVuupAVdZtpeLNfh2m1Y1brcUXLNq4SuwjqPA8Adl4FcNRewazJSiXfhQxjlgUNOnxlSF9hJxJdBzl2LIthcs2VBrD41rNUtd077k277McQLMFgwx1qPjvwnynXnUAZqE3F8XiTq9uOpAWSuMW1h8nbJwNCDcrH3-0ZPxW-3AGbozbJw6jWpCYuF2Gsq5Ato2ijJtI_hq9_7Oj37ddoFsYXOJnLO0toEK-hP4c9ItPQWm4SvrI3X2NPckkP15ImXsUhFXohgj-ZaudpG7he0X4oqpWoLAzJ3M0UyfMKHF5P9O1bLU-yi-8"
     ]
     from localsearch.searchdataset import Dataset
-    d = Dataset(datasetURLs[2])
+    d = Dataset(datasetURLs[5])
     total_score = sum([book.score for book in d.books])
     hash_books = {}
     for book in d.books:
         hash_books[book.book_id] = book
-    lib = Lib(d.libraries, d.total_days, total_score, hash_books, 50)
+    lib = Lib(d.libraries, d.total_days, total_score, hash_books, 8)
     solver = Solver(lib)
     solver.solve(1000, 9000000, 0.1)
 
