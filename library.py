@@ -28,15 +28,15 @@ class Library:
                 punctuation = punctuation + self.sum_punctuations(self.books[position:], scanned_books)
         return punctuation
 
-    def get_punctuation2(self, availible_time, scanned_books):
+    def get_punctuation2(self, available_time, scanned_books):
         punctuation = 0
-        availible_time = availible_time-self.signup_time
-        books = list(set(books)-set(scanned_books)
+        available_time = available_time-self.signup_time
+        books = list(set(self.books)-set(scanned_books))
         self.good_books = list(set(self.books)-set(scanned_books)) 
         for i in range(len(self.books)):
             if available_time == 0:
                 break
-            actual_book = self.books(i) 
+            actual_book = self.books[i]
             if actual_book in self.good_books:
                 punctuation += actual_book.punctuation
             available_time -= 1
