@@ -24,11 +24,12 @@ class Solver:
                     self.best_sol = curr_sol.copy()
                     self.best_cost = curr_sol.cost()
                     if self.best_cost == 0:
+                        self.best_sol.print()
                         return self.best_sol
+            self.best_sol.print()
         return self.best_sol
 
 
 def main(model: Interpretation) -> None:
     best_sol = Solver(model).solve()
     print(best_sol.cost())
-    best_sol.print()
