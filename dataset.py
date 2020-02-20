@@ -8,13 +8,14 @@ class Dataset:
     print(raw_values)
     dataset_globals = re.split(r'\s', raw_values.pop(0))
     print(dataset_globals)
-    total_books = dataset_globals.pop(0)
-    total_libraries = dataset_globals.pop(0)
-    total_days = dataset_globals.pop(0)
+    self.total_books = dataset_globals.pop(0)
+    self.total_libraries = dataset_globals.pop(0)
+    self.total_days = dataset_globals.pop(0)
 
-    book_values = []
+    self.books = []
     book_id = 0
     for book_value in re.split(r'\s', raw_values.pop(0)):
-        book_values.append(Book(book_id, book_value))
+        self.books.append(Book(book_id, int(book_value)))
         book_id += 1
-    print(book_values)
+    for book in self.books:
+      print(book)
