@@ -45,7 +45,7 @@ class Dataset:
           best_punct = punct
       days_left -= best_library.signup_time
       books_alredy_scanned += best_library.books
-      libraries.pop(libraries.index(best_library))
+      best_libraries.append(libraries.pop(libraries.index(best_library)))
       points += best_punct
       number_of_libraries += 1
       #print(days_left, best_library.id, points)
