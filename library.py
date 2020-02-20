@@ -10,6 +10,7 @@ class Library:
         self.total_books = int(total_books)
         self.books_in_parallel = int(books_in_parallel)
         self.signup_time = int(time)
+        self.good_books = []
 
     def print_books(self):
         for book in self.books:
@@ -20,21 +21,18 @@ class Library:
         availible_time = availible_time-self.signup_time
         for i in range(availible_time):
             position = i*self.books_in_parallel
-            
-            
             if position+self.books_in_parallel < len(self.books):
                 
                 punctuation = punctuation + \
                     self.sum_punctuations(self.books[position:position+self.books_in_parallel], scanned_books)
             else:
-                
                 punctuation = punctuation + self.sum_punctuations(self.books[position:], scanned_books)
         return punctuation
 
     def sum_punctuations(self, books, scanned_books):
-        
         punctuation = 0
         books = list(set(books)-set(scanned_books))
+        self.good_books += books
         for book in books:
             punctuation = punctuation + book.punctuation
         return punctuation
