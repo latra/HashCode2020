@@ -11,6 +11,8 @@ def main():
         ]
 
     d = Dataset(datasetURLs[0])
+    for library in d.libraries:
+        print(library.get_punctuation())
 
 if __name__ == "__main__":
     main()
