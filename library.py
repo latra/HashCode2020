@@ -23,8 +23,3 @@ class Library:
         for book in books:
             puctuation = puntuation + book.punctuation
         return punctuation
-
-def main():
-
-if __name__ == "__main__":
-    main()
