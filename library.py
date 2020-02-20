@@ -5,7 +5,7 @@ from book import Book
 class Library:
     def __init__(self, library_id, books, total_books, books_in_parallel, time):
         self.id = int(library_id)
-        self.books = int(books)
+        self.books = books
         self.books.sort(key=lambda x: x.punctuation, reverse=True)
         self.total_books = int(total_books)
         self.books_in_parallel = int(books_in_parallel)
