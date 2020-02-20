@@ -30,5 +30,4 @@ class Dataset:
       books = []
       for book in re.split(r'\s', raw_values.pop(0)):
         books.append(self.books[int(book)])
-        print(books)
-      self.libraries.append(Library(library,total_books,parallel,time))
+      self.libraries.append(Library(library,books,total_books,parallel,time))

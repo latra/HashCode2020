@@ -2,9 +2,10 @@ import math
 from book import Book
 
 class Library:
-    def __init__(self, library_id, books, books_in_parallel, time):
+    def __init__(self, library_id, books, total_books, books_in_parallel, time):
         self.id = library_id
         self.books = books.sort(key=lambda x: x.punctuation, reverse=True)
+        self.total_books = total_books
         self.books_in_parallel = books_in_parallel
         self.time = time
 
