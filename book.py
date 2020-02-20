@@ -15,3 +15,5 @@ class Book:
         return self.punctuation >= other.punctuation
     def __str__ (self):
         return str([self.book_id, self.punctuation])
+    def __hash__(self):
+        return self.book_id
