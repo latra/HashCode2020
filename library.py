@@ -5,10 +5,15 @@ from book import Book
 class Library:
     def __init__(self, library_id, books, total_books, books_in_parallel, time):
         self.id = library_id
-        self.books = books.sort(key=lambda x: x.punctuation, reverse=True)
+        self.books = books
+        self.books.sort(key=lambda x: x.punctuation, reverse=True)
         self.total_books = total_books
         self.books_in_parallel = books_in_parallel
         self.time = time
+
+    def print_books(self):
+        for book in self.books:
+            print(f"Ordered books: {book}")
 
     def get_punctuation(self, availible_time, scanned_books):
         punctuation = 0
