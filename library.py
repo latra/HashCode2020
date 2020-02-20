@@ -9,7 +9,7 @@ class Library:
         self.books_in_parallel = books_in_parallel
         self.time = time
 
-    def get_punctuation(availible_time, scanned_books):
+    def get_punctuation(self, availible_time, scanned_books):
         punctuation = 0
         for i in math.ceil(int(len(self.books)/self.books_in_parallel)):
             if(i==availible_time):
