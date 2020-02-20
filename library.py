@@ -33,13 +33,10 @@ class Library:
         available_time = available_time-self.signup_time
         books = list(set(self.books)-set(scanned_books))
         good_books = list(set(self.books)-set(scanned_books)) 
-        
-        for i in range(len(self.books)):
+        self.good_books = []
+        for actual_book in self.books:
             if available_time == 0:
                 break
-            actual_book = self.books[i]
-            #print("WTF")
-            #print(actual_book)
             if actual_book in good_books:
                 punctuation += actual_book.punctuation
                 self.good_books.append(actual_book)

@@ -35,7 +35,7 @@ class Dataset:
     points = 0
     number_of_libraries = 0
     best_libraries = []
-    while days_left > 0:
+    while days_left > 0 and len(libraries) > 0:
       best_library = None
       best_punct = 0
       for library in self.libraries:
@@ -54,4 +54,5 @@ class Dataset:
     for library in best_libraries:
       print(str(library.id) + " " + str(len(library.good_books)))
       for book in library.good_books:
-        print(book.id, end=" ")
+        print(book.book_id, end=" ")
+      print("")
