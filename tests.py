@@ -9,8 +9,8 @@ book3 = Book(3, 6)
 book4 = Book(4, 5)
 book5 = Book(5, 4)
 
-library0 = Library(0, [book0, book1, book2, book3, book4], 2, 2)
-library1 = Library(1, [ book3, book2, book5, book0 ],1, 3)
+library0 = Library(0, [ book0, book1, book2, book3, book4 ], 5, 2, 2)
+library1 = Library(1, [ book3, book2, book5, book0 ],4,1, 3)
 def testValues(actual, expected):
     if (actual == expected):
         print('OK')
@@ -18,7 +18,8 @@ def testValues(actual, expected):
         print('KO: ' + str(actual) + '!=' + str(expected))
 
 def libraryTests():
-    pass
+    print(library0.books)
+    print(library0.get_punctuation(1000,[]))
 
 def bookTests():
 
