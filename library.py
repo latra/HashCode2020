@@ -1,9 +1,10 @@
 import math
+from book import Book
 
 class Library:
     def __init__(self, library_id, books, books_in_parallel, time):
         self.id = library_id
-        self.books = books.sort()
+        self.books = books.sort(key=lambda x: x.punctuation, reverse=True)
         self.books_in_parallel = books_in_parallel
         self.time = time
 
@@ -23,9 +24,3 @@ class Library:
         for book in books:
             puctuation = puntuation + book.punctuation
         return punctuation
-
-def main():
-    pass
-
-if __name__ == "__main__":
-    main()
