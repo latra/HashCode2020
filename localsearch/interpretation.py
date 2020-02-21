@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import random
-from typing import List
+from typing import List, TextIO
 
 
 class Interpretation(object):
@@ -18,7 +18,7 @@ class Interpretation(object):
     def copy(self) -> Interpretation:
         raise NotImplementedError
 
-    def print(self) -> None:
+    def print(self, file_out: TextIO) -> None:
         raise NotImplementedError
 
     def _get_list_neighbors(self) -> List[Interpretation]:

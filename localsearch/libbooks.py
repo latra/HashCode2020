@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import random
-from typing import List, Dict, Tuple
+import sys
+from typing import List, Dict, Tuple, TextIO, IO
+from localsearch.interpretation import Interpretation
 
 
 class Book:
@@ -23,9 +25,8 @@ class Library:
         self.signup: int = signup
         self.capacity: int = capacity
         self.total_books: int = total_books
+        self.picked_books: List[Book] = []
 
-
-from localsearch.interpretation import Interpretation
 
 class Lib(Interpretation):
 
@@ -70,6 +71,7 @@ class Lib(Interpretation):
                     bag += 1
                     checked_books.append(i)
                     self.picked_books[book.book_id] = book
+                    self.libraries[lib_id].picked_books.append(book)
             self.libs_from_books[lib_id] = checked_books
             self.picked_libs += 1
             if len(self.inter) == len(self.libraries):
@@ -83,21 +85,24 @@ class Lib(Interpretation):
         c.picked_books = self.picked_books
         return c
 
-    def print(self) -> None:
-        print("============")
-        print(str(self.picked_libs))
+    def print(self, file_out: TextIO) -> None:
+        sys.stderr.write("============\n")
+        file_out.write(str(self.picked_libs) + '\n')
         libraries = self.get_correct_order()
         for dia, lib in libraries.items():
             lib_id, library = lib
-            print(str(lib_id) + " " + str(library.total_books))
-            print(" ".join(map(str, [ book.book_id for book in self.libraries[lib_id].books])))
-        print(self.score())
-        print("============")
+            if len(library.picked_books) != 0:
+                file_out.write(str(lib_id) + " " + str(len(library.picked_books)) + '\n')
+                file_out.write(" ".join(map(str, [book.book_id for book in library.picked_books])) + '\n')
+        sys.stderr.write("S'ha trobat solució\n")
+        sys.stderr.write("COST: ==> " + str(self.score()) + '\n')
+        sys.stderr.write("============\n")
 
     def _get_list_neighbors(self) -> List[Interpretation]:
         res = []
         for i in range(self.max_neigh):
             neigh: Lib = self.copy()
+            random.random(self.picked_libs)
             lib_id1 = random.randint(0, len(self.libraries) - 1)
             lib_id2 = random.randint(0, len(self.libraries) - 1)
             tmp1 = self.inter[lib_id1]
@@ -128,7 +133,7 @@ class Lib(Interpretation):
         return res
 
 
-def main():
+def main(data_id: int, file_p: str):
     from localsearch.nbsearch import Solver
     datasetURLs = [
         "https://hashcodejudge.withgoogle.com/download/blob/AMIfv96z2wILTmc0q35abZk6s8nklnGSRLd0IKa2jein6k8THmQLBlLCj144Yi8ih04jwPxn0ubGUsOWVha5w7UOMt0oLsSYtafv_oqVogstm7ve0br1JiNJ8IRE55Fgq2i6zRGNCTwjOU0gJJuRvevzTcP2Cq8_l5f9UcHJbfOfB0sq4evSBNx8gBMXZzNLUfpKppv848Z4XQ2Eh6e6qwfZO2QXbGnjnxuWNBDXYzdiMYd6CHI6qIHmY9K8pr81n4IaR9nF0_uESJ87ckK0lkNSX1c5VpCCfDxmVCM6DyYr2uWzEv15FKB0z0grxBdIy7Ek0M_L5GdR",
@@ -139,15 +144,15 @@ def main():
         "https://hashcodejudge.withgoogle.com/download/blob/AMIfv97dgUsRkZX-sPN6ZjxVuupAVdZtpeLNfh2m1Y1brcUXLNq4SuwjqPA8Adl4FcNRewazJSiXfhQxjlgUNOnxlSF9hJxJdBzl2LIthcs2VBrD41rNUtd077k277McQLMFgwx1qPjvwnynXnUAZqE3F8XiTq9uOpAWSuMW1h8nbJwNCDcrH3-0ZPxW-3AGbozbJw6jWpCYuF2Gsq5Ato2ijJtI_hq9_7Oj37ddoFsYXOJnLO0toEK-hP4c9ItPQWm4SvrI3X2NPckkP15ImXsUhFXohgj-ZaudpG7he0X4oqpWoLAzJ3M0UyfMKHF5P9O1bLU-yi-8"
     ]
     from localsearch.searchdataset import Dataset
-    d = Dataset(datasetURLs[5])
+    d = Dataset(datasetURLs[data_id])
     total_score = sum([book.score for book in d.books])
     hash_books = {}
     for book in d.books:
         hash_books[book.book_id] = book
     lib = Lib(d.libraries, d.total_days, total_score, hash_books, 8)
     solver = Solver(lib)
-    solver.solve(1000, 9000000, 0.1)
+    solver.solve(1000, 9000000, 0.1, file_p)
 
 
 if __name__ == '__main__':
-    main()
+    main(int(sys.argv[0]))
