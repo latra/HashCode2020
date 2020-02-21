@@ -133,7 +133,7 @@ class Lib(Interpretation):
         return res
 
 
-def main(data_id: int, file_p: str):
+def main(data_id: int = 0, file_p: str = "localsearch/a.txt"):
     from localsearch.nbsearch import Solver
     datasetURLs = [
         "https://hashcodejudge.withgoogle.com/download/blob/AMIfv96z2wILTmc0q35abZk6s8nklnGSRLd0IKa2jein6k8THmQLBlLCj144Yi8ih04jwPxn0ubGUsOWVha5w7UOMt0oLsSYtafv_oqVogstm7ve0br1JiNJ8IRE55Fgq2i6zRGNCTwjOU0gJJuRvevzTcP2Cq8_l5f9UcHJbfOfB0sq4evSBNx8gBMXZzNLUfpKppv848Z4XQ2Eh6e6qwfZO2QXbGnjnxuWNBDXYzdiMYd6CHI6qIHmY9K8pr81n4IaR9nF0_uESJ87ckK0lkNSX1c5VpCCfDxmVCM6DyYr2uWzEv15FKB0z0grxBdIy7Ek0M_L5GdR",
@@ -155,4 +155,4 @@ def main(data_id: int, file_p: str):
 
 
 if __name__ == '__main__':
-    main(int(sys.argv[0]))
+    main()
